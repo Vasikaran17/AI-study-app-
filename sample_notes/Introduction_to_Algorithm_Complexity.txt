@@ -1,0 +1,57 @@
+# Introduction to Algorithm Complexity and Big-O Notation
+
+## 1. What is Algorithm Analysis?
+Algorithm analysis is the practice of quantifying the efficiency of an algorithm in terms of computational time (time complexity) and memory consumption (space complexity) as the input size (n) grows asymptotically towards infinity.
+Rather than measuring seconds on a specific machine (which varies by CPU clock speed, operating system, and cache architecture), we measure the growth rate of elementary operations.
+
+## 2. Big-O Notation: Formal Definition
+Big-O notation describes the upper bound (worst-case scenario) of an algorithm's growth rate:
+Formally, f(n) = O(g(n)) if and only if there exist positive constants c and n0 such that:
+0 <= f(n) <= c * g(n) for all n >= n0.
+
+Key rules for Big-O simplifications:
+1. Drop constant coefficients: O(5n^2) becomes O(n^2).
+2. Drop lower-order terms: O(n^2 + 100n + 50) becomes O(n^2).
+3. Addition rule: Sequential code blocks sum their complexities: O(f(n)) + O(g(n)) = O(max(f(n), g(n))).
+4. Multiplication rule: Nested loops multiply their complexities: O(f(n) * g(n)).
+
+## 3. Hierarchy of Common Time Complexities
+Ordered from most efficient to least efficient as input size n grows:
+
+- O(1) - Constant Time:
+  Execution time remains constant regardless of input size.
+  Examples: Accessing an array element by index (arr[i]), retrieving a key from a hash map on average, pushing/popping from a stack.
+
+- O(log n) - Logarithmic Time:
+  The algorithm repeatedly cuts the problem space in half at each step.
+  Examples: Binary search on a sorted array, operations on balanced binary search trees (AVL/Red-Black).
+  Behavior: If n doubles, runtime increases by only one additional step.
+
+- O(n) - Linear Time:
+  Runtime scales directly proportionally with the input size.
+  Examples: Linear scan through an unsorted array, finding the minimum/maximum element, string traversal.
+
+- O(n log n) - Linearithmic Time:
+  Occurs in optimal comparison-based divide-and-conquer sorting algorithms.
+  Examples: Merge Sort, Heapsort, QuickSort (average case).
+  Theoretical limit: Any comparison-based sort has a lower bound of Omega(n log n).
+
+- O(n^2) - Quadratic Time:
+  Runtime scales with the square of input size; typically seen in nested loops iterating over the same dataset.
+  Examples: Bubble Sort, Selection Sort, Insertion Sort, naive duplicate checks.
+
+- O(2^n) - Exponential Time:
+  Execution time doubles with each additional element in input.
+  Examples: Naive recursive calculation of Fibonacci numbers without memoization, recursive subsets exploration.
+
+- O(n!) - Factorial Time:
+  Grows extremely rapidly; practical only for tiny inputs (n < 12).
+  Examples: Brute-force Traveling Salesperson Problem, generating all permutations of an array.
+
+## 4. Space Complexity
+Space complexity accounts for the auxiliary memory required by the algorithm in addition to the input storage:
+- In-place algorithms operate using O(1) auxiliary space (e.g., standard Selection Sort or in-place QuickSort partitioning).
+- Call stack memory in recursive algorithms must be counted: a recursion depth of n contributes O(n) auxiliary stack space.
+
+## 5. Practical Engineering Trade-offs
+Engineers frequently trade space complexity for time complexity. A classic example is caching or memoization with hash tables: computing an answer once and caching it uses O(n) auxiliary space to reduce exponential O(2^n) recursion down to linear O(n) execution time.
